@@ -1,0 +1,81 @@
+.card {
+    position: relative;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.member-profile {
+    position: absolute;
+    top: -10px; /* Fait dépasser l'image en haut du cadre */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+}
+
+.member-profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid white; /* Bordure blanche pour effet propre */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Assure que l’image garde une bonne proportion */
+}
+
+.card-body {
+    padding-top: 70px; /* Ajoute de l'espace sous l'image pour éviter les chevauchements */
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: none;
+}
+
+
+
+.card-campagne {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.card-campagne:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card-text {
+    font-size: clamp(12px, 2vw, 16px); /* Taille de police responsive */
+}
+
+.font-size-16 {
+    font-size: 16px;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+.font-text-regular {
+    font-weight: 400;
+}
+
+.font-text-light {
+    font-weight: 300;
+}
+
+.font-text-light-italic {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.badge {
+    padding: 0.5em 0.75em;
+    border-radius: 4px;
+}
