@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3179e50-a3f1-4766-a252-61fdf0043e90" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Edacy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/GestionLivre/src/main/java/sn/smd/GestionLivre/service/Impl/AuteurServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/GestionLivre/src/main/java/sn/smd/GestionLivre/service/Impl/AuteurServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/GestionLivre/src/main/java/sn/smd/GestionLivre/service/Impl/LivreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/GestionLivre/src/main/java/sn/smd/GestionLivre/service/Impl/LivreServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/AUTHENTIFICATION/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/AUTHENTIFICATION/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/Dashbords/Dashbord.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/Dashbords/Dashbord.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/LIVRE/livre.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/LIVRE/livre.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/utilisateurs/Auteur.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/GestionLivre-frontend/src/views/pages/utilisateurs/Auteur.js" afterDir="false" />
-    </list>
+    <list default="true" id="c3179e50-a3f1-4766-a252-61fdf0043e90" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1746865962514</updated>
-      <workItem from="1746865963803" duration="2531000" />
+      <workItem from="1746865963803" duration="2561000" />
     </task>
     <servers />
   </component>
