@@ -113,7 +113,12 @@ function Auteur() {
             text: "Actif",
             formatter: (cell) => (cell ? "Oui" : "Non"),
         },
-        { dataField: "biographie", text: "Biographie" },
+        { dataField: "biographie", text: "Biographie" ,
+            style: {
+                width: '250px',
+                whiteSpace: 'normal',    // autorise le retour à la ligne
+                wordWrap: 'break-word'   // coupe les mots longs
+            } },
         {
             dataField: "actions",
             text: "Actions",
@@ -134,7 +139,7 @@ function Auteur() {
                         <div className="py-4 table-responsive">
                             <Row className="align-items-center">
                                 <Col xl="6">
-                                    <Button color="primary" onClick={handleAdd}>Ajouter un auteur</Button>
+                                    <Button className="colordark" onClick={handleAdd}>Ajouter un auteur</Button>
                                 </Col>
                                 <Col xl="6" className="text-right">
                                     {SearchBar ? (
@@ -157,7 +162,7 @@ function Auteur() {
 
             {/* Modal pour ajout / modification */}
             <Modal isOpen={modal} toggle={() => setModal(!modal)} className="modal-lg">
-                <ModalHeader className="bg-primary text-white" toggle={() => setModal(!modal)}>
+                <ModalHeader className="colordark text-white" toggle={() => setModal(!modal)}>
                     {isEditing ? "Modifier Auteur" : "Ajouter Auteur"}
                 </ModalHeader>
                 <ModalBody>

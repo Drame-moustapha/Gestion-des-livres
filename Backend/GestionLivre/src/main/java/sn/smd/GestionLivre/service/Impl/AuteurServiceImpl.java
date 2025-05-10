@@ -24,9 +24,9 @@ public class AuteurServiceImpl implements AuteurService {
      */
     @Override
     public Auteur updateAuteur(Auteur auteur, Long id) {
-        Auteur aut=this.getAuteur(id);
+        Auteur a=this.getAuteur(id);
         if (auteurRepository.findById(id).isPresent()) {
-            Auteur a = new Auteur();
+
             a.setNom(auteur.getNom());
             a.setPrenom(auteur.getPrenom());
             a.setSexe(auteur.getSexe());

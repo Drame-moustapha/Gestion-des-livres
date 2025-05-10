@@ -59,6 +59,7 @@ function Dashbord() {
             setLivresParLangue(formattedData);
 
             const response = await countAuteur(token);
+            console.info("nombre Auteur :",response);
             setAuteur(response);
         } catch (error) {
             console.error("Erreur lors de la récupération du nombre de livres et celui des auteurs :", error);

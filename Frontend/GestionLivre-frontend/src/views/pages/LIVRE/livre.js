@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useEffect, useState, useContext, useMemo} from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit";
@@ -42,7 +42,7 @@ const { SearchBar } = Search;
 function Livre() {
   const { authData } = useContext(AuthContext);
   const [livres, setLivres] = useState([]);
-  const [filteredLivres, setFilteredLivres] = useState([]);
+
   const [modal, setModal] = useState(false);
     const [uploadedFiles, setUploadedFiles] = useState({});
  const [isEditing, setIsEditing] = useState(false);
@@ -58,33 +58,20 @@ function Livre() {
     const navigate=useNavigate();
   const id=authData.id;
 
-  useEffect(() => {
-    fetchLivres();
-    fetchAuteurs();
-  }, );
+    useEffect(() => {
+        fetchLivres();
+        fetchAuteurs();
+    }, [id, isAdmin, token]);
 
-
-
-
-  const fetchLivres = async () => {
-    try {
-
-      console.info("role",isAdmin);
-      if(isAdmin){
-        const res = await getAllLivres(token);
-
-        setLivres(res);
-      }else{
-        const res = await getAllLivresByAuteur(id,token);
-        setLivres(res);
-          console.info("livres pour Auteur",res);
-      }
-
-    } catch (error) {
-      console.error("Erreur lors de la récupération des livres :", error);
-      setLivres([]);
-    }
-  };
+    const fetchLivres = async () => {
+        try {
+            const res = isAdmin ? await getAllLivres(token) : await getAllLivresByAuteur(id, token);
+            setLivres(res);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des livres :", error);
+            setLivres([]);
+        }
+    };
 
 
   const fetchAuteurs = async () => {
@@ -104,6 +91,7 @@ function Livre() {
             livre.langue?.toLowerCase().includes(searchTerm.toLowerCase())
         );
     }, [searchTerm, livres]);
+
 
 
 
@@ -188,9 +176,9 @@ function Livre() {
         { dataField: "resume", text: "Résumé", sort: true },
         { dataField: "fichier", text: "Fichier", sort: true },
     {
-      dataField: "auteur.nom",
+      dataField: "auteur.id",
       text: "Auteur",
-      formatter: (cell, row) => row.auteur?.nom || "",
+      formatter: (cell, row) => row.auteur?.id || row.auteur || "",
     },
     {
       dataField: "actions",
@@ -233,7 +221,7 @@ function Livre() {
       </Card>
 
       <Modal isOpen={modal} toggle={() => setModal(!modal)} className="modal-lg">
-        <ModalHeader toggle={() => setModal(!modal)}>
+        <ModalHeader  className="colordark text-white " toggle={() => setModal(!modal)}>
           {isEditing ? "Modifier Livre" : "Ajouter Livre"}
         </ModalHeader>
         <ModalBody>
@@ -263,18 +251,6 @@ function Livre() {
                                    onChange={(e) => setFormData({...formData, resume: e.target.value})}/>
                         </FormGroup>
                     </Col>
-
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label>Fichier pdf</Label>
-                            <Input type="file" accept="application/pdf"
-                                   onChange={(e) => handleFileChange(e)}/>
-                        </FormGroup>
-                    </Col>
-
-                </Row>
-
-                <Row>
                     <Col md={6}>
                         <FormGroup>
                             <Label>Langue</Label>
@@ -282,7 +258,22 @@ function Livre() {
                                    onChange={(e) => setFormData({...formData, langue: e.target.value})}/>
                         </FormGroup>
                     </Col>
+
+                </Row>
+
+                <Row>
+                    {!isEditing &&(
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label>Fichier pdf</Label>
+                                <Input type="file" accept="application/pdf"
+                                       onChange={(e) => handleFileChange(e)}/>
+                            </FormGroup>
+                        </Col>
+                    )}
+                    {!isEditing && (
                     <Col md={6}>
+
                         {authData.role !== "ADMIN" && (
                             <FormGroup>
                                 <Label>Auteur</Label>
@@ -295,7 +286,9 @@ function Livre() {
                                 </Input>
                             </FormGroup>
                         )}
+
                     </Col>
+                    )}
                 </Row>
             </Form>
         </ModalBody>

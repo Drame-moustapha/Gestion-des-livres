@@ -84,26 +84,42 @@ const Register = () => {
             <IndexNavbar className="bg-white text-white" />
             <Container className="mt-5">
                 <Row className="justify-content-center">
-                    <Col className="col-xl-5">
-                        <div className="text-center mb-3">
-                            <a href="#" className={selectedRole === "Auteur" ? "text-primary" : "text-secondary"} onClick={() => setSelectedRole("Auteur")}>Auteur</a>
-                            <span className="mx-2">|</span>
-                            <a href="#" className={selectedRole === "Lecteur" ? "text-primary" : "text-secondary"} onClick={() => setSelectedRole("Lecteur")}>Lecteur</a>
-                        </div>
+                    <Col className="col-xl-7">
+
                         <Card>
-                            <CardHeader className="text-center">
-                                <img src={logo} alt="Logo" className="mb-3 mt-2" style={{ width: "100px" }} />
-                                <h1>Créer un nouveau compte {selectedRole}</h1>
-                                <h3>Veuillez remplir tous les champs</h3>
+
+                            <CardHeader className="text-center custom-header" style={{backgroundColor: "transparent", border: "none"}}>
+                                <img src={logo} alt="Logo "
+                                     className="mb-3 mt-2 rounded-circle border-0 media-comment-avatar center"
+                                     style={{width: "100px"}}/>
+                                <p className=" h3 font-weight-bold">Créer un nouveau compte {selectedRole}</p>
+                                <p className="text-muted font-weight-bold">Veuillez remplir tous les champs</p>
+                                <div className="text-center mb-2">
+                                    <a href="#"
+                                       className={selectedRole === "Auteur" ? "text-primary" : "text-secondary"}
+                                       onClick={() => setSelectedRole("Auteur")}>Auteur</a>
+                                    <span className="mx-2">|</span>
+                                    <a href="#"
+                                       className={selectedRole === "Lecteur" ? "text-primary" : "text-secondary"}
+                                       onClick={() => setSelectedRole("Lecteur")}>Lecteur</a>
+                                </div>
                             </CardHeader>
                             <CardBody>
                                 <Formik
-                                    initialValues={{ prenom: "", nom: "", sexe: "", email: "", password: "", role: selectedRole, biographie: "" }}
+                                    initialValues={{
+                                        prenom: "",
+                                        nom: "",
+                                        sexe: "",
+                                        email: "",
+                                        password: "",
+                                        role: selectedRole,
+                                        biographie: ""
+                                    }}
                                     validationSchema={validationSchema}
                                     onSubmit={handleSubmit}
                                     enableReinitialize
                                 >
-                                    {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+                                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                                         <form onSubmit={handleSubmit}>
                                             {errorMessage && <div className="text-danger mb-3">{errorMessage}</div>}
                                             <FormGroup>

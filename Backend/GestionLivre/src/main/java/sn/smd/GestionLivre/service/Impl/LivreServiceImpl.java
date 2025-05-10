@@ -36,21 +36,21 @@ public class LivreServiceImpl implements LivreService {
 
     }
 
+
+
     @Override
     public Livre updateLivre(Livre l, Long id) {
-        Livre livre=this.getLivre(id);
-        if(livre!=null){
-            livre.setPrix(l.getPrix());
-            livre.setTitre(l.getTitre());
-            livre.setLangue(l.getLangue());
-            livre.setResume(l.getResume());
-            return livreRepository.save(livre);
-        }else{
-            return livre;
-        }
+        Livre livre = livreRepository.findById(id)
+                .orElseThrow(() -> new NotFoundExceptions("Le livre ayant l'ID", id.toString()));
 
+        livre.setPrix(l.getPrix());
+        livre.setTitre(l.getTitre());
+        livre.setLangue(l.getLangue());
+        livre.setResume(l.getResume());
 
+        return livreRepository.save(livre);
     }
+
 
     @Override
     public void deleteLivre(Livre l) {
