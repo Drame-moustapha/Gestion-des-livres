@@ -25,5 +25,4 @@ public class Livre {
     private Auteur auteur;
 
 
-
 }

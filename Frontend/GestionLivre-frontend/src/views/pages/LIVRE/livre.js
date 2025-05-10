@@ -61,7 +61,7 @@ function Livre() {
   useEffect(() => {
     fetchLivres();
     fetchAuteurs();
-  }, []);
+  }, );
 
 
 
@@ -72,7 +72,7 @@ function Livre() {
       console.info("role",isAdmin);
       if(isAdmin){
         const res = await getAllLivres(token);
-        console.info("livres pour admin",res);
+
         setLivres(res);
       }else{
         const res = await getAllLivresByAuteur(id,token);
@@ -97,20 +97,17 @@ function Livre() {
     }
   };
 
-  useEffect(() => {
-    console.log("Livres avant filtre:", livres);
-    setFilteredLivres(
-        livres.filter((livre) => {
-          const match = livre.titre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              livre.langue?.toLowerCase().includes(searchTerm.toLowerCase());
-          console.log("Livre filtré:", livre, "Match:", match);
-          return match;
-        })
-    );
-    console.log("Livres filtrés:", filteredLivres);
-  }, [searchTerm, livres]);
+    const filteredLivres = useMemo(() => {
+        if (!searchTerm) return livres;
+        return livres.filter(livre =>
+            livre.titre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            livre.langue?.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [searchTerm, livres]);
 
-  const handleAdd = () => {
+
+
+    const handleAdd = () => {
     setFormData({ id: null, titre: "", prix: "", langue: "",resume: "",fichier: "", auteur: { id: isAdmin ? "" : authData.id } });
 
     setIsEditing(false);

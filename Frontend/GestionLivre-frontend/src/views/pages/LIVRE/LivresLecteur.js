@@ -85,15 +85,22 @@ function LivresLecteur() {
 
     useEffect(() => {
         console.log("Livres avant filtre:", livres);
-        setFilteredLivres(
-            livres.filter((livre) => {
-                const match = livre.titre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    livre.langue?.toLowerCase().includes(searchTerm.toLowerCase());
-                console.log("Livre filtré:", livre, "Match:", match);
-                return match;
-            })
-        );
-        console.log("Livres filtrés:", filteredLivres);
+
+        if (livres.length === 0) {
+            console.log("Aucun livre disponible.");
+            setFilteredLivres([]);
+            return;
+        }
+
+        const filtered = livres.filter((livre) => {
+            const match = livre.titre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                livre.langue?.toLowerCase().includes(searchTerm.toLowerCase());
+            console.log("Livre filtré:", livre, "Match:", match);
+            return match;
+        });
+
+        setFilteredLivres(filtered);
+        console.log("Livres filtrés:", filtered);
     }, [searchTerm, livres]);
 
     const handleView = (livre) => {

@@ -111,7 +111,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         auteur.setRoles(Collections.singletonList(auteurRole));
         // — spécifiques à Auteur —
         auteur.setBiographie(dto.getBiographie());
+        String txt = String.format(
+                "Salut,\n\nMadame/Monsieur,\n\nVotre compte a été créé avec succès et ses informations sont :\n" +
+                        "Username : %s\nPassword : %s\n\nCordialement,\nL'équipe Sunu Bibliothèque",
+                auteur.getUsername(), dto.getPassword()
+        );
+
+        envoiEmailService.sendEmail(auteur.getUsername(),"Creation du compte",txt);
         //  Sauvegarde (JPA générera l’INSERT dans utilisateur et dans auteur)
+
         return auteurRepository.save(auteur);
     }
 

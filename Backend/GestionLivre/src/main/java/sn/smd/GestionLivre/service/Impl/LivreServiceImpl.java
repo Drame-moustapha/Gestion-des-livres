@@ -43,7 +43,7 @@ public class LivreServiceImpl implements LivreService {
             livre.setPrix(l.getPrix());
             livre.setTitre(l.getTitre());
             livre.setLangue(l.getLangue());
-
+            livre.setResume(l.getResume());
             return livreRepository.save(livre);
         }else{
             return livre;
@@ -85,7 +85,6 @@ public class LivreServiceImpl implements LivreService {
     }
 
     /**
-     * @param id
      * @return
      */
     @Override

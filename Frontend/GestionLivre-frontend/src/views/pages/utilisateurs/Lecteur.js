@@ -23,6 +23,7 @@ import "assets/css/monstyle.css";
 import axios from "axios";
 import {updateUser,getAllUtilisateurs,deleteUserById} from "services/UtilisateurService";
 import {createUser} from "services/InscriptionService";
+import {deleteLivreById} from "../../../services/LivreService";
 
 const { SearchBar } = Search || {};
 
@@ -39,6 +40,8 @@ function Lecteur() {
   const [formData, setFormData] = useState(initialFormState());
   const [isEditing, setIsEditing] = useState(false);
   const [selectedLecteur, setSelectedLecteur] = useState(null);
+  const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
+  const [lecteurToDelete, setLecteurToDelete] = useState(null);
   const { authData } = useContext(AuthContext);
   const token = authData?.token;
 
@@ -102,15 +105,9 @@ function Lecteur() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Voulez-vous vraiment supprimer ce lecteur ?")) {
-      try {
-        await deleteUserById(id);
-        fetchLecteurs();
-      } catch (err) {
-        console.error("Erreur de suppression :", err);
-      }
-    }
+  const handleDelete = (lecteur) => {
+    setLecteurToDelete(lecteur);
+    setConfirmDeleteModal(true);
   };
 
   const columns = [
@@ -136,6 +133,16 @@ function Lecteur() {
     },
   ];
 
+  const confirmDelete = async () => {
+    try {
+      await deleteUserById(lecteurToDelete.id, token);
+      fetchLecteurs();
+      setConfirmDeleteModal(false);
+    } catch (error) {
+      console.error("Erreur suppression :", error);
+    }
+  };
+
   return (
       <Container className="mt-5" fluid>
         <Card>
@@ -144,7 +151,7 @@ function Lecteur() {
                 <div className="py-4 table-responsive">
                   <Row className="align-items-center">
                     <Col xl="6">
-                      <Button color="primary" onClick={handleAdd}>Ajouter un lecteur</Button>
+                      <Button className="colordark text-white" onClick={handleAdd}>Ajouter un lecteur</Button>
                     </Col>
                     <Col xl="6" className="text-right">
                       {SearchBar ? (
@@ -164,6 +171,92 @@ function Lecteur() {
             )}
           </ToolkitProvider>
         </Card>
+
+
+        <Modal isOpen={modal} toggle={() => setModal(!modal)} className="modal-lg">
+          <ModalHeader  className="colordark text-white" toggle={() => setModal(!modal)}>
+            {isEditing ? "Modifier Lecteur" : "Ajouter Lecteur"}
+          </ModalHeader>
+          <ModalBody>
+            <Form>
+              <Row>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label>Prenom</Label>
+                    <Input type="text" value={formData.prenom}
+                           onChange={(e) => setFormData({...formData, prenom: e.target.value})}/>
+                  </FormGroup>
+                </Col>
+
+                <Col md={6}>
+                  <FormGroup>
+                    <Label>Nom</Label>
+                    <Input type="text"  value={formData.nom}
+                           onChange={(e) => setFormData({...formData, nom: e.target.value})}/>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label>Sexe</Label>
+                    <Input
+                        type="select"
+                        value={formData.sexe}
+                        onChange={e => setFormData({ ...formData, sexe: e.target.value })}
+                    >
+                      <option value="">-- Sélectionnez --</option>
+                      <option value="HOMME">HOMME</option>
+                      <option value="FEMME">FEMME</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+
+                {!isEditing && (
+                    <Col md={6}>
+                      <FormGroup>
+                        <Label>Username</Label>
+                        <Input
+                            type="email"
+                            value={formData.username}
+                            onChange={e => setFormData({ ...formData, username: e.target.value })}
+                        />
+                      </FormGroup>
+                    </Col>
+                )}
+
+              </Row>
+
+              {!isEditing && (
+                  <Row>
+                    <Col md={12}>
+                      <FormGroup>
+                        <Label>Mot de passe</Label>
+                        <Input
+                            type="password"
+                            value={formData.password}
+                            onChange={e => setFormData({ ...formData, password: e.target.value })}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+              )}
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={handleSave}>{isEditing ? "Sauvegarder" : "Ajouter"}</Button>
+            <Button color="secondary" onClick={() => setModal(false)}>Annuler</Button>
+          </ModalFooter>
+        </Modal>
+
+        <Modal isOpen={confirmDeleteModal} toggle={() => setConfirmDeleteModal(!confirmDeleteModal)}>
+          <ModalHeader toggle={() => setConfirmDeleteModal(!confirmDeleteModal)}>Confirmation</ModalHeader>
+          <ModalBody>Voulez-vous vraiment supprimer ce livre ?</ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={confirmDelete}>Supprimer</Button>
+            <Button color="secondary" onClick={() => setConfirmDeleteModal(false)}>Annuler</Button>
+          </ModalFooter>
+        </Modal>
       </Container>
   );
 }

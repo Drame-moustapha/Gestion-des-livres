@@ -24,7 +24,7 @@ function AdminFooter() {
 
                 <NavItem>
                   <NavLink
-                      href="http://blog.creative-tim.com?ref=adpr-admin-footer"
+                      href="https://www.linkedin.com/in/moustaphadramekandji/"
                       target="_blank"
                       rel="noopener noreferrer"
                   >

@@ -31,9 +31,9 @@ public class AuteurServiceImpl implements AuteurService {
             a.setPrenom(auteur.getPrenom());
             a.setSexe(auteur.getSexe());
             a.setBiographie(auteur.getBiographie());
-            a.setUsername(aut.getUsername());
-            a.setPassword(aut.getPassword());
-            a.setRoles(aut.getRoles());
+           // a.setUsername(aut.getUsername());
+            //a.setPassword(aut.getPassword());
+            //a.setRoles(aut.getRoles());
             return auteurRepository.save(a);
         }else{
             throw new NotFoundExceptions("Auteur non existant");
