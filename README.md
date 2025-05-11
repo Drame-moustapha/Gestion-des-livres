@@ -1,9 +1,14 @@
-Ce projet de gestion de livres est réalisé avec un back-end Spring Boot et un front-end React.js. Pour la gestion de la base de données, j’ai utilisé PostgreSQL. Le stockage des livres est entièrement géré côté back-end : pour l’activer, vous devez configurer le chemin du dossier contenant les fichiers dans application.properties et dans la classe FileStorageServiceImpl.java.
-Le système fait intervenir trois types d’utilisateurs :
-- Administrateur : gère les différents acteurs (lecteurs et auteurs).
-- Auteur : ajoute, modifie ou supprime ses propres livres (la modification ne porte pas sur le fichier).
-- Lecteur : peut consulter l’ensemble des livres et les télécharger.
+Ce projet est une application web reposant sur un back-end Spring Boot, un front-end React.js et une base de données PostgreSQL.
+Il permet la gestion et le téléchargement de livres.
+Le Stockage des livres est géré côté back-end. Pour activer cette fonctionnalité, configurez le chemin du répertoire de stockage dans :
+-	application.properties
+-	et dans la classe FileStorageServiceImpl.java .
   
-Chaque utilisateur doit se connecter pour accéder à ses fonctionnalités.
+L’application dispose de trois types d’utilisateurs :
+-	Administrateur : il gère les utilisateurs (auteurs et lecteurs)
+-	Auteur : il peut ajouter, modifier, ou supprimer ses propres livres
+-	Lecteur : il peut consulter l’ensemble des livres et les télécharger
+Chaque utilisateur doit se connecter pour accéder à ses fonctionnalités spécifiques selon son rôle.
 
-La vidéo de démonstration présente l’application en action.
+Démonstration
+Une vidéo de démonstration illustre les fonctionnalités de l’application.
