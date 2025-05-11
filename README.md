@@ -5,4 +5,5 @@ Le système fait intervenir trois types d’utilisateurs :
 - Lecteur : peut consulter l’ensemble des livres et les télécharger.
   
 Chaque utilisateur doit se connecter pour accéder à ses fonctionnalités.
+
 La vidéo de démonstration présente l’application en action.
