@@ -10,5 +10,5 @@ L’application dispose de trois types d’utilisateurs :
 -	Lecteur : il peut consulter l’ensemble des livres et les télécharger
 Chaque utilisateur doit se connecter pour accéder à ses fonctionnalités spécifiques selon son rôle.
 
-Démonstration
-Une vidéo de démonstration illustre les fonctionnalités de l’application.
+Démonstration:
+ Une vidéo de démonstration illustre les fonctionnalités de l’application.
